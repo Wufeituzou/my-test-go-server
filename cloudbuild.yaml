@@ -1,4 +1,4 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker-compose'
+  - name: 'docker/compose:1.28.0'
     args: ['up', '-d']
     dir: 'my-test'
