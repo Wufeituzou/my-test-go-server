@@ -1,0 +1,4 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker-compose'
+    args: ['up', '-d']
+    dir: 'my-test'
