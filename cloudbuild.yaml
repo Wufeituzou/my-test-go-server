@@ -5,3 +5,8 @@ steps:
   # push container image
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME"]
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+    - run
+    - --location=us-central1
+    - --cluster=autopilot-cluster-1
