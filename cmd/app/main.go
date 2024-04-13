@@ -123,25 +123,33 @@ func (uh userHandler) createUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (uh userHandler) getUsers(w http.ResponseWriter, r *http.Request) {
-	rows, err := uh.db.QueryContext(uh.ctx, getUserQuery)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	var users []User1
-	for rows.Next() {
-		var u User1
-		if err := rows.Scan(&u.ID, &u.Name); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		users = append(users, u)
+	// rows, err := uh.db.QueryContext(uh.ctx, getUserQuery)
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
+	// var users []User1
+	// for rows.Next() {
+	// 	var u User1
+	// 	if err := rows.Scan(&u.ID, &u.Name); err != nil {
+	// 		http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 		return
+	// 	}
+	// 	users = append(users, u)
+	// }
+
+	// if err := rows.Err(); err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
+
+	users := []User1{
+		{ID: "1", Name: "John"},
+		{ID: "2", Name: "Jane"},
+		{ID: "3", Name: "Alice"},
+		{ID: "4", Name: "Bob"},
 	}
 
-	if err := rows.Err(); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
 	res, err := json.Marshal(users)
 
 	if err != nil {
