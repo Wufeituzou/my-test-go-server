@@ -1,0 +1,43 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "nginx-2"
+  namespace: "default"
+  labels:
+    app: "nginx-2"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "nginx-2"
+  template:
+    metadata:
+      labels:
+        app: "nginx-2"
+    spec:
+      containers:
+      - name: "my-test-go-server-sha256-1"
+        image: "gcr.io/notein-debug-405205/my-test-go-server@sha256:659568e330c5a162878223cc6f530bb3b87189a1a559a3870ac8ae17aecb76e5"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "nginx-2-hpa-pckf"
+  namespace: "default"
+  labels:
+    app: "nginx-2"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "nginx-2"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      target:
+        type: "Utilization"
+        averageUtilization: 80

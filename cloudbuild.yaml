@@ -8,6 +8,7 @@ steps:
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
     - run
+    - --filename=deploy.yaml
     - --image=gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA
     - --location=us-central1
     - --cluster=autopilot-cluster-1
