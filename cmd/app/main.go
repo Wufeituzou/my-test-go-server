@@ -35,7 +35,7 @@ func main() {
 	if err != nil {
 		slog.Error("main", "database ping error", err.Error())
 	}
-	log.Println("db ping successfully, Just test 2.")
+	log.Println("db ping successfully, Just test 2, 3")
 
 	uh := userHandler{
 		ctx: context.Background(),
