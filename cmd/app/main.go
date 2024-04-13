@@ -21,7 +21,7 @@ func main() {
 
 	var (
 		dbDriver = "mysql"
-		dbSource = "root:noteinin@tcp(mysql:3306)/notein"
+		dbSource = "my-test:noteinin@tcp(104.197.233.227:3306)/notein_user"
 	)
 
 	db, err := sql.Open(dbDriver, dbSource)
@@ -42,11 +42,11 @@ func main() {
 		db:  db,
 	}
 
-	err = uh.createDataFileAndTable()
-	if err != nil {
-		slog.Error("main", "createDataFileAndTable error", err.Error())
-	}
-	log.Println("create database file and table successfully.")
+	// err = uh.createDataFileAndTable()
+	// if err != nil {
+	// 	slog.Error("main", "createDataFileAndTable error", err.Error())
+	// }
+	// log.Println("create database file and table successfully.")
 
 	http.Handle("/users", uh)
 	http.ListenAndServe(":8080", nil)
@@ -73,13 +73,13 @@ var (
 )
 
 func (uh userHandler) createDataFileAndTable() error {
-	createDBQuery := "CREATE DATABASE IF NOT EXISTS notein;"
+	createDBQuery := "CREATE DATABASE IF NOT EXISTS notein_user;"
 	_, err := uh.db.ExecContext(uh.ctx, createDBQuery)
 	if err != nil {
 		return err
 	}
 
-	useDBQuery := "USE notein;"
+	useDBQuery := "USE notein_user;"
 	_, err = uh.db.ExecContext(uh.ctx, useDBQuery)
 	if err != nil {
 		return err

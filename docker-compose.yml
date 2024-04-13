@@ -1,19 +1,19 @@
 version: '3.9'
 services:
-  mysql:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_DATABASE: notein
-      MYSQL_ROOT_PASSWORD: noteinin
-    ports:
-      - "3306:3306"
-    volumes:
-     - ~/.docker-conf/mysql/data/:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] 
-      timeout: 5s
-      retries: 10
+  # mysql:
+  #   image: mysql:8.0
+  #   restart: always
+  #   environment:
+  #     MYSQL_DATABASE: notein
+  #     MYSQL_ROOT_PASSWORD: noteinin
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #    - ~/.docker-conf/mysql/data/:/var/lib/mysql
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] 
+  #     timeout: 5s
+  #     retries: 10
 
   webapp: 
     build: 
@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:8080
-    depends_on:
-      mysql:
-        condition: service_healthy
+    # depends_on:
+    #   mysql:
+    #     condition: service_healthy
 
