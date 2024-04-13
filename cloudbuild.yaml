@@ -9,6 +9,6 @@ steps:
     args:
     - run
     - --filename=deploy.yaml
-    - --image=gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA
+    - --image=gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME
     - --location=us-central1
     - --cluster=autopilot-cluster-1
