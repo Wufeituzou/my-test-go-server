@@ -21,7 +21,7 @@ func main() {
 
 	var (
 		dbDriver = "mysql"
-		dbSource = "my-test:noteinin@tcp(104.197.233.227:3306)/notein_user"
+		dbSource = "my-test:noteinin@tcp(notein-debug-405205:us-central1:my-test-go-sql)/notein_user"
 	)
 
 	db, err := sql.Open(dbDriver, dbSource)
