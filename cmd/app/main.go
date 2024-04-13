@@ -21,7 +21,7 @@ func main() {
 
 	var (
 		dbDriver = "mysql"
-		dbSource = "my-test:noteinin@tcp(notein-debug-405205:us-central1:my-test-go-sql)/notein_user"
+		dbSource = "root:noteinin@tcp(104.197.233.227:3306)/notein_user"
 	)
 
 	db, err := sql.Open(dbDriver, dbSource)
@@ -31,6 +31,7 @@ func main() {
 	defer db.Close()
 	log.Println("connected to MySQL successfully.")
 
+	log.Println("start call db.Ping().")
 	err = db.Ping()
 	if err != nil {
 		slog.Error("main", "database ping error", err.Error())
