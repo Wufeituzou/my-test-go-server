@@ -30,7 +30,7 @@ func main() {
 	dbURI := fmt.Sprintf("%s:%s@unix(%s)/%s?parseTime=true",
 		dbUser, dbPwd, unixSocketPath, dbName)
 
-	slog.Info("main func", "dbURI", dbURI, "dbUser", dbUser, "dbPwd", dbPwd, "unixSocketPath", unixSocketPath, "dbName", dbName)
+	slog.Info("main func dbSourceName", "dbURI", dbURI, "dbUser", dbUser, "dbPwd", dbPwd, "unixSocketPath", unixSocketPath, "dbName", dbName)
 
 	db, err := sql.Open("mysql", dbURI)
 	if err != nil {
