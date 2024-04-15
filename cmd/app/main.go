@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"log"
 	"log/slog"
 	"net/http"
@@ -20,11 +21,18 @@ func main() {
 	slog.Info("Welcome to Notein Global Server!")
 
 	var (
-		dbDriver = "mysql"
-		dbSource = "root:noteinin@tcp(104.197.233.227:3306)/notein_user"
+		dbUser         = "my-test"                                           // e.g. 'my-db-user'
+		dbPwd          = "noteinin"                                          // e.g. 'my-db-password'
+		dbName         = "notein_user"                                       // e.g. 'my-database'
+		unixSocketPath = "/cloudsql/notein-debug-405205:us-central1:my-test" // e.g. '/cloudsql/project:region:instance'
 	)
 
-	db, err := sql.Open(dbDriver, dbSource)
+	dbURI := fmt.Sprintf("%s:%s@unix(%s)/%s?parseTime=true",
+		dbUser, dbPwd, unixSocketPath, dbName)
+
+	slog.Info("main func", "dbURI", dbURI, "dbUser", dbUser, "dbPwd", dbPwd, "unixSocketPath", unixSocketPath, "dbName", dbName)
+
+	db, err := sql.Open("mysql", dbURI)
 	if err != nil {
 		slog.Error("main", "connecting to MySQL error", err.Error())
 	}
@@ -32,7 +40,7 @@ func main() {
 	log.Println("connected to MySQL successfully.")
 
 	log.Println("start call db.Ping().")
-	// err = db.Ping()
+	err = db.Ping()
 	if err != nil {
 		slog.Error("main", "database ping error", err.Error())
 	}
