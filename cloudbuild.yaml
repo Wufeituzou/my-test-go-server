@@ -5,10 +5,8 @@ steps:
   # push container image
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME"]
-  - name: "gcr.io/cloud-builders/gke-deploy"
-    args:
-    - run
-    - --filename=deploy.yaml
-    - --image=gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME
-    - --location=us-central1
-    - --cluster=autopilot-cluster-1
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', 'my-test', '--image', 'gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME', '--region', 'us-west2']
+images:
+- gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME
