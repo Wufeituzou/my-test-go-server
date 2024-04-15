@@ -32,7 +32,7 @@ func main() {
 	log.Println("connected to MySQL successfully.")
 
 	log.Println("start call db.Ping().")
-	err = db.Ping()
+	// err = db.Ping()
 	if err != nil {
 		slog.Error("main", "database ping error", err.Error())
 	}
@@ -123,6 +123,7 @@ func (uh userHandler) createUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (uh userHandler) getUsers(w http.ResponseWriter, r *http.Request) {
+	slog.Info("getUsers in main", "uh", uh.ctx)
 	// rows, err := uh.db.QueryContext(uh.ctx, getUserQuery)
 	// if err != nil {
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
