@@ -8,5 +8,6 @@ curl -X POST -H "Content-Type application/json" -d '{"id": "1", "name": "lisi"}'
 # get user
 
 ```bash
-curl -i localhost:8080/users
+curl -i 35.232.156.79:8080/users
+curl -i 127.0.0.1:8080/users
 ```
