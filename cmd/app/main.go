@@ -18,7 +18,7 @@ type User1 struct {
 }
 
 func main() {
-	slog.Info("Welcome to Notein Global Server!")
+	slog.Info("Welcome to Notein Global Server!~")
 
 	var (
 		dbUser         = "my-test"                                           // e.g. 'my-db-user'
