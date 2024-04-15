@@ -123,7 +123,7 @@ func (uh userHandler) createUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (uh userHandler) getUsers(w http.ResponseWriter, r *http.Request) {
-	slog.Info("getUsers in main", "uh", uh.ctx)
+	slog.Info("getUsers in main", "request", r)
 	// rows, err := uh.db.QueryContext(uh.ctx, getUserQuery)
 	// if err != nil {
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
